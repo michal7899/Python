@@ -1,0 +1,33 @@
+import re                                 # importing regex
+
+print("The calculator")                   # user info
+print("Type 'quit' to exit\n")
+
+previous = 0
+run = True
+
+def performMaths():                       # The calculator function
+    global run                            # Global to create both variables while creating function
+    global previous
+    equation = ""
+    if previous == 0:
+            equation = input("Enter equation:")       # The user input 
+    else:
+            equation = input(str(previous))
+
+
+    if equation == 'quit':                            # If user wants to end 
+        print("Goodbye")
+        run = False
+    else:
+        equation = re.sub('[a-zA-Z,.:()" "]', '', equation)    # Eliminates anything that is not a digit
+            
+        if previous == 0:
+            previous = eval(equation)                          # Eval carries out calculation 
+        else:
+            previous = eval(str(previous) + equation)
+
+
+while run:
+    performMaths()
+
